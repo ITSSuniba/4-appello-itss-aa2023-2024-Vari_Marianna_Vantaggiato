@@ -13,6 +13,7 @@ public class AdvancedApacheMathFunction {
             sumOfSquares += array1[i] * array1[i] + array2[i] * array2[i];
         }
 
+
         double meanOfSquares = sumOfSquares / array1.length;
         return Math.sqrt(meanOfSquares);
     }
