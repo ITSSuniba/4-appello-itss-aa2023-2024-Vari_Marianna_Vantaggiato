@@ -18,6 +18,7 @@ public class AdvancedApacheMathFunction {
         return Math.sqrt(meanOfSquares);
     }
 
+
     public static double geometricMeanOfSumOfSquaresVariableLength(double[] array1, double[] array2) {
         int maxLength = Math.max(array1.length, array2.length);
 
