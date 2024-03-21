@@ -43,6 +43,6 @@ public class AdvancedApacheMathFunction {
 
         double[] array3 = {2.0, 3.0, 4.0, 5.0};
         double resultVariableLength = geometricMeanOfSumOfSquaresVariableLength(array1, array3);
-        System.out.println("Media geometrica della somma dei quadrati (lunghezze diverse): " + resultVariableLength);
+        System.out.println("Media geometrica della somma dei quadrati (lunghezze diverse)  : " + resultVariableLength);
     }
 }
