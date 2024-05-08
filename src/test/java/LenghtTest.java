@@ -2,19 +2,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.example.AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength;
 import static  org.example.AdvancedApacheMathFunction.geometricMeanOfSumOfSquares;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.lang.IllegalArgumentException;
 import java.lang.ArithmeticException;
 
 public class LenghtTest {
+
     @Test
-    void testArrayWithDifferentLengths() {
+    public void testArrayWithDifferentLengths_ThrowsException() {
         double[] array1 = {1, 2};
         double[] array2 = {3, 4, 5};
-        double result = geometricMeanOfSumOfSquaresVariableLength(array1, array2);
 
+        assertThrows(IllegalArgumentException.class, ()-> {
+            geometricMeanOfSumOfSquares(array1, array2);
+        });
     }
+
     @Test
     public void testArrayWithEqualLengths() {
         double[] array1 = {1, 2, 3};
