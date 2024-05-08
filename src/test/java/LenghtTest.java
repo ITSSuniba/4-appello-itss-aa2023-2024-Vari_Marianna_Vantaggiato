@@ -30,5 +30,31 @@ public class LenghtTest {
         assertTrue(result > 0); // Verifica che il risultato sia positivo
     }
 
+    @Test
+    public void testArrayWithMixValues() {
+        double[] array1 = {-1, 2, -3};
+        double[] array2 = {-4, -5, 6};
+        double result = geometricMeanOfSumOfSquares(array1, array2);
+        assertTrue(result > 0); // Verifica che il risultato sia positivo
+    }
 
+    @Test
+    public void testArrayWithZeroValues() {
+        double[] array1 = {0, 0, 0};
+        double[] array2 = {0, 0, 0};
+        double result = geometricMeanOfSumOfSquares(array1, array2);
+        assertEquals(0, result, 0.0001); // Verifica che il risultato sia zero
+    }
+
+    @Test
+    public void testArrayWithSingleElement() {
+        double[] array1 = {3};
+        double[] array2 = {4};
+        double expected = Math.sqrt(3*3 + 4*4); // Calcolo manuale dell'output atteso
+        double result = geometricMeanOfSumOfSquares(array1, array2);
+        assertEquals(expected, result, 0.0001); // Verifica che il risultato ottenuto sia vicino all'output atteso con una tolleranza di 0.0001
+    }
 }
+
+
+
