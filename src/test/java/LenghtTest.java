@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.example.AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength;
 import static  org.example.AdvancedApacheMathFunction.geometricMeanOfSumOfSquares;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +63,6 @@ public class LenghtTest {
     public void testGeometricMeanOfSumOfSquares_WithEmptyArrays_isNaN() {
         double[] array1 = {};
         double[] array2 = {};
-        double expected = Double.NaN; // Valore atteso NaN
 
         double result = geometricMeanOfSumOfSquares(array1, array2);
 
