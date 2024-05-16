@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static  org.example.AdvancedApacheMathFunction.geometricMeanOfSumOfSquares;
+import static org.example.AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.IllegalArgumentException;
@@ -67,6 +68,14 @@ public class LenghtTest {
         double result = geometricMeanOfSumOfSquares(array1, array2);
 
         assertTrue(Double.isNaN(result)); // Verifica se il risultato è NaN
+    }
+
+    @Test
+    public void testArrayWithExtremeValues() {
+        double[] array1 = {18056, 3, 0};
+        double[] array2 = {0, -4, -51045};
+        double result = geometricMeanOfSumOfSquares(array1, array2);
+        assertEquals(31260.257, result, 0.001);
     }
 
 }
