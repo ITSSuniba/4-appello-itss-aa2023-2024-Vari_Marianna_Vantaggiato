@@ -1,16 +1,13 @@
-import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.generator.Size;
-import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
 import net.jqwik.api.*;
 import net.jqwik.api.statistics.Histogram;
 import net.jqwik.api.statistics.StatisticsReport;
 import org.example.AdvancedApacheMathFunction;
-import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(JUnitQuickcheck.class)
 public class AdvancedApacheMathFunctionPropertyBasedTest {
+
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
@@ -90,4 +87,3 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     }
 
 }
-
