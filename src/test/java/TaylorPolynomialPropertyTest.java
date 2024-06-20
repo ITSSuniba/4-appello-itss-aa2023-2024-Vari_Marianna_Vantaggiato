@@ -12,7 +12,7 @@ public class TaylorPolynomialPropertyTest {
     private static final double TOLERANCE = 1e-5;
 
     @Property
-    public void testValueAtPointOfExpansion(double x) {
+    public void testValueAtPointOfExpansion(@ForAll("") double x) {
         Function<Double, Double> expFunction = Math::exp;
         double a = x;
         int n = 0;
