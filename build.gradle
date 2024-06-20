@@ -14,8 +14,9 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'org.junit.jupiter:junit-jupiter:5.6.2'
-    testImplementation 'com.pholser:junit-quickcheck-core:0.9.6'
-    testAnnotationProcessor 'com.pholser:junit-quickcheck-generator:0.9.6'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'net.jqwik:jqwik:1.6.3'
 }
 
 test {
