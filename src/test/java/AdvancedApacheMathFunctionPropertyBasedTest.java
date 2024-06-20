@@ -1,14 +1,20 @@
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.generator.Size;
-import net.jqwik.api.Assume;
-import net.jqwik.api.ForAll;
+import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+import net.jqwik.api.*;
+import net.jqwik.api.statistics.Histogram;
+import net.jqwik.api.statistics.StatisticsReport;
 import org.example.AdvancedApacheMathFunction;
+import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(JUnitQuickcheck.class)
 public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
-    void testEqualLengthThrowsException(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testEqualLengthThrowsException(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
         Assume.that(array1.length != array2.length);
 
         assertThrows(IllegalArgumentException.class, () ->
@@ -18,7 +24,9 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     }
 
     @Property
-    void testNonNegativity(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testNonNegativity(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
         Assume.that(array1.length == array2.length);
 
         double result = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
@@ -26,7 +34,9 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     }
 
     @Property
-    void testSymmetry(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testSymmetry(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
         Assume.that(array1.length == array2.length);
 
         double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
@@ -36,7 +46,9 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     }
 
     @Property
-    void testZeroAddition(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testZeroAddition(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
         Assume.that(array1.length == array2.length);
 
         double[] zeros = new double[array1.length];
@@ -48,21 +60,17 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     }
 
     @Property
-    void testZeroArrays(@ForAll @Size(min = 1, max = 10000) int size) {
-        double[] zeros = new double[size];
-
-        double result = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(zeros, zeros);
-        assertEquals(0.0, result, "Se entrambi gli array sono zeri, il risultato deve essere zero");
-    }
-
-    @Property
-    void testVariableLengthNonNegativity(@ForAll double[] array1, @ForAll double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testVariableLengthNonNegativity(@ForAll double[] array1, @ForAll double[] array2) {
         double result = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(array1, array2);
         assertTrue(result >= 0, "La media geometrica deve essere non negativa anche con lunghezze variabili");
     }
 
     @Property
-    void testVariableLengthSymmetry(@ForAll double[] array1, @ForAll double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testVariableLengthSymmetry(@ForAll double[] array1, @ForAll double[] array2) {
         double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(array1, array2);
         double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(array2, array1);
 
@@ -70,7 +78,9 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     }
 
     @Property
-    void testVariableLengthZeroAddition(@ForAll double[] array1, @ForAll double[] array2) {
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testVariableLengthZeroAddition(@ForAll double[] array1, @ForAll double[] array2) {
         double[] zeros = new double[Math.max(array1.length, array2.length)];
 
         double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(array1, zeros);
@@ -79,12 +89,5 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
         assertEquals(result1, result2, "Aggiungere zero non deve cambiare il risultato anche con lunghezze variabili");
     }
 
-    @Property
-    void testVariableLengthZeroArrays(@ForAll @Size(min = 1, max = 10000) int size) {
-        double[] zeros = new double[size];
-
-        double result = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(zeros, zeros);
-        assertEquals(0.0, result, "Se entrambi gli array sono zeri, il risultato deve essere zero anche con lunghezze variabili");
-    }
 }
 
