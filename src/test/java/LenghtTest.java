@@ -20,6 +20,15 @@ public class LenghtTest {
     }
 
     @Test
+    public void testOneEmptyArray() {
+        double[] array1 = {1, 2, 3};
+        double[] array2 = {};
+        assertThrows(IllegalArgumentException.class, ()-> {
+            geometricMeanOfSumOfSquares(array1, array2);
+        });
+    }
+
+    @Test
     public void testArrayWithEqualLengths() {
         double[] array1 = {1, 2, 3};
         double[] array2 = {4, 5, 6};

@@ -1,11 +1,12 @@
-import com.pholser.junit.quickcheck.runner.JUnitQuickcheck;
+
 import com.pholser.junit.quickcheck.Property;
+import org.example.TaylorPolynomial;
+
 import java.util.function.Function;
-import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(JUnitQuickcheck.class)
+
 public class TaylorPolynomialPropertyTest {
     // Tolleranza per il confronto dei valori in virgola mobile
     private static final double TOLERANCE = 1e-5;
@@ -19,7 +20,7 @@ public class TaylorPolynomialPropertyTest {
         double expectedValue = expFunction.apply(a);
         double taylorResult = TaylorPolynomial.taylorPolynomial(expFunction, a, x, n);
 
-        assertEquals("Il polinomio di Taylor di ordine zero deve restituire il valore della funzione al punto di espansione", expectedValue, taylorResult, TOLERANCE);
+        assertEquals("Il polinomio di Taylor di ordine zero deve restituire il valore della funzione al punto di espansione", expectedValue);
     }
 
     @Property
@@ -31,7 +32,7 @@ public class TaylorPolynomialPropertyTest {
         double taylorPositive = TaylorPolynomial.taylorPolynomial(cosFunction, a, x, n);
         double taylorNegative = TaylorPolynomial.taylorPolynomial(cosFunction, a, -x, n);
 
-        assertEquals("Il polinomio di Taylor di cos(x) dovrebbe essere simmetrico", taylorPositive, taylorNegative, TOLERANCE);
+        assertEquals("Il polinomio di Taylor di cos(x) dovrebbe essere simmetrico", taylorPositive);
     }
 
     @Property
@@ -43,7 +44,7 @@ public class TaylorPolynomialPropertyTest {
         double expectedValue = sinFunction.apply(x);
         double taylorResult = TaylorPolynomial.taylorPolynomial(sinFunction, a, x, n);
 
-        assertTrue("Il polinomio di Taylor dovrebbe essere più preciso vicino al punto di espansione",
-                Math.abs(expectedValue - taylorResult) < 1.0);
+        assertTrue(Math.abs(expectedValue - taylorResult) < 1.0,
+                "Il polinomio di Taylor dovrebbe essere più preciso vicino al punto di espansione");
     }
 }
