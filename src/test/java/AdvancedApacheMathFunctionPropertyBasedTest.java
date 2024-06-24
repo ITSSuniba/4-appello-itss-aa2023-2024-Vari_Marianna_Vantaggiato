@@ -64,7 +64,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
-    public void testZeroAddition(@ForAll @NotEmpty @Size(min = 1, max = 10) double[] array1) {
+    public void testZeroAdditionTwoArrays(@ForAll @NotEmpty @Size(min = 1, max = 10) double[] array1) {
         // Generare array2 con la stessa lunghezza di array1
         double[] array2 = new double[array1.length];
         Random random = new Random();
@@ -97,6 +97,32 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
 
         assertEquals(result1, result2, "Aggiungere zero non deve cambiare il risultato");
     }
+
+    @Property
+    @Report(Reporting.GENERATED)
+    @StatisticsReport(format = Histogram.class)
+    public void testZeroAdditionOneArray(
+            @ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1) {
+
+        double[] zeros = new double[array1.length];
+
+        double sumOfSquares1= 0.0;
+
+        for (int i = 0; i < array1.length; i++) {
+            sumOfSquares1 += array1[i] * array1[i] ;
+            zeros[i]=0.0;
+        }
+
+        double meanOfSquares = sumOfSquares1 / array1.length;
+
+        double resultWithZeros = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, zeros);
+        double resultWithouthZeros = Math.sqrt(meanOfSquares);
+        System.out.println("media array1: " + meanOfSquares);
+        System.out.println("media con zeri: " + resultWithZeros);
+
+        assertEquals(resultWithZeros, resultWithouthZeros, 1e-10, "L'aggiunta di zeri non deve cambiare il risultato");
+    }
+
 
     @Property
     @Report(Reporting.GENERATED)
