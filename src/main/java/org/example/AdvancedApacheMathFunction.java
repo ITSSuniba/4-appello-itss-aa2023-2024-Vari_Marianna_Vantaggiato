@@ -10,14 +10,17 @@ public class AdvancedApacheMathFunction {
             throw new IllegalArgumentException("Gli array non devono essere vuoti");
         }
 
-        double sumOfSquares = 0.0;
+        double sumOfSquares1 = 0.0;
+        double sumOfSquares2 = 0.0;
+
 
         for (int i = 0; i < array1.length; i++) {
-            sumOfSquares += array1[i] * array1[i] + array2[i] * array2[i];
+            sumOfSquares1 += array1[i] * array1[i] ;
+            sumOfSquares2 += array2[i] * array2[i] ;
         }
 
 
-        double meanOfSquares = sumOfSquares / array1.length;
+        double meanOfSquares = (sumOfSquares1 + sumOfSquares2) / (2*array1.length);
 
         if (meanOfSquares < 0){
             throw new IllegalArgumentException("La media geometrica deve essere non negativa");

@@ -48,7 +48,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
-    public void testSymmetry(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
+    public void testSymmetry(@ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
         Assume.that(array1.length == array2.length);
 
         double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
