@@ -18,6 +18,10 @@ public class AdvancedApacheMathFunction {
 
 
         double meanOfSquares = sumOfSquares / array1.length;
+
+        if (meanOfSquares < 0){
+            throw new IllegalArgumentException("La media geometrica deve essere non negativa");
+        }
         return Math.sqrt(meanOfSquares);
     }
 

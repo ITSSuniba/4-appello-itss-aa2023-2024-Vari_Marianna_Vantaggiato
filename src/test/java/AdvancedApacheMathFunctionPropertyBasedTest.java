@@ -1,5 +1,6 @@
 import com.pholser.junit.quickcheck.generator.Size;
 import net.jqwik.api.*;
+import net.jqwik.api.constraints.NotEmpty;
 import net.jqwik.api.statistics.Histogram;
 import net.jqwik.api.statistics.StatisticsReport;
 import org.example.AdvancedApacheMathFunction;
@@ -26,7 +27,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
-    public void testNonNegativity(@ForAll @Size(min = 1, max = 10000) double[] array1) {
+    public void testNonNegativity(@ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1) {
         // Generare array2 con la stessa lunghezza di array1
         double[] array2 = new double[array1.length];
         Random random = new Random();
