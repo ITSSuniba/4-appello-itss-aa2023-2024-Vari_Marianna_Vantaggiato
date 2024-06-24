@@ -48,9 +48,13 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
-    public void testSymmetry(@ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
-        Assume.that(array1.length == array2.length);
-
+    public void testSymmetry(@ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1) {
+        // Generare array2 con la stessa lunghezza di array1
+        double[] array2 = new double[array1.length];
+        Random random = new Random();
+        for (int i = 0; i < array2.length; i++) {
+            array2[i] = random.nextDouble();
+        }
         double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
         double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array2, array1);
 
