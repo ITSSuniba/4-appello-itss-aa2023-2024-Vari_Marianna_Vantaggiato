@@ -6,6 +6,9 @@ public class AdvancedApacheMathFunction {
         if (array1.length != array2.length) {
             throw new IllegalArgumentException("Le lunghezze degli array devono essere uguali");
         }
+        if (array1.length == 0) {
+            throw new IllegalArgumentException("Gli array non devono essere vuoti");
+        }
 
         double sumOfSquares = 0.0;
 
