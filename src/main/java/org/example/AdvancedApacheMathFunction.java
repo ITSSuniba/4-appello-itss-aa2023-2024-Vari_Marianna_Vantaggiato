@@ -20,7 +20,7 @@ public class AdvancedApacheMathFunction {
         }
 
 
-        double meanOfSquares = (sumOfSquares1 + sumOfSquares2) / (2*array1.length);
+        double meanOfSquares = (sumOfSquares1 + sumOfSquares2) / array1.length;
 
         if (meanOfSquares < 0){
             throw new IllegalArgumentException("La media geometrica deve essere non negativa");

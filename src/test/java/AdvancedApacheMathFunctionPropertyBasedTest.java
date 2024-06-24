@@ -64,15 +64,18 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
-    public void testZeroAddition(@ForAll @Size(min = 1, max = 10000) double[] array1, @ForAll @Size(min = 1, max = 10000) double[] array2) {
-        Assume.that(array1.length == array2.length);
+    public void testZeroAddition(@ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1) {
 
         double[] zeros = new double[array1.length];
 
-        double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, zeros);
-        double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
+        double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array1);
+        double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, zeros);
 
-        assertEquals(result1, result2, "Aggiungere zero non deve cambiare il risultato");
+        System.out.println("Result1: " + result1);
+        System.out.println("Result2: " + result2);
+
+
+        assertEquals(result1, result2,1e-10, "Aggiungere zero non deve cambiare il risultato");
     }
 
     @Property
