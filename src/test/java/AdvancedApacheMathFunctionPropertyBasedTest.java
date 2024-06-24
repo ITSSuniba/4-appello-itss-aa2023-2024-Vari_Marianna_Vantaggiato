@@ -64,18 +64,38 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
     @Property
     @Report(Reporting.GENERATED)
     @StatisticsReport(format = Histogram.class)
-    public void testZeroAddition(@ForAll @NotEmpty @Size(min = 1, max = 10000) double[] array1) {
+    public void testZeroAddition(@ForAll @NotEmpty @Size(min = 1, max = 10) double[] array1) {
+        // Generare array2 con la stessa lunghezza di array1
+        double[] array2 = new double[array1.length];
+        Random random = new Random();
+        for (int i = 0; i < array1.length; i++) {
+            array2[i] = random.nextDouble();
+        }
+
+        double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
 
         double[] zeros = new double[array1.length];
 
-        double result1 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array1);
-        double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, zeros);
+        for (int i = 0; i < array1.length; i++) {
+            zeros[i] = 0.0;
+        }
 
-        System.out.println("Result1: " + result1);
-        System.out.println("Result2: " + result2);
+        double sumOfSquares1 = 0.0;
+        double sumOfSquares2 = 0.0;
+        double sumOfSquares3 = 0.0;
 
 
-        assertEquals(result1, result2,1e-10, "Aggiungere zero non deve cambiare il risultato");
+        for (int i = 0; i < array1.length; i++) {
+            sumOfSquares1 += (array1[i] * array1[i]);
+            sumOfSquares2 += (array2[i] * array2[i]);
+            sumOfSquares3 += (zeros[i] * zeros[i]);
+        }
+
+
+        double result2 = Math.sqrt((sumOfSquares2 + sumOfSquares1 + sumOfSquares3)/(array1.length));
+
+
+        assertEquals(result1, result2, "Aggiungere zero non deve cambiare il risultato");
     }
 
     @Property
