@@ -5,6 +5,7 @@ import net.jqwik.api.Report;
 import net.jqwik.api.Reporting;
 import net.jqwik.api.constraints.NotEmpty;
 import net.jqwik.api.statistics.Histogram;
+import net.jqwik.api.statistics.Statistics;
 import net.jqwik.api.statistics.StatisticsReport;
 import org.example.AdvancedApacheMathFunction;
 
@@ -20,6 +21,7 @@ public class AdvancedApacheMathFunctionPropertyDifferentLength {
     public void testVariableLengthNonNegativity(@ForAll @NotEmpty double[] array1, @ForAll @NotEmpty double[] array2) {
         double result = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(array1, array2);
         assertTrue(result >= 0, "La media geometrica deve essere non negativa anche con lunghezze variabili");
+        Statistics.collect(result>=0);
     }
 
     @Property
@@ -30,6 +32,7 @@ public class AdvancedApacheMathFunctionPropertyDifferentLength {
         double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquaresVariableLength(array2, array1);
 
         assertEquals(result1, result2, "La funzione deve essere simmetrica anche con lunghezze variabili");
+        Statistics.collect(result1==result2);
     }
 
     @Property
@@ -59,6 +62,7 @@ public class AdvancedApacheMathFunctionPropertyDifferentLength {
 
 
         assertEquals(result1, result2, "Aggiungere zero non deve cambiare il risultato");
+        Statistics.collect(result1==result2);
     }
 
 }

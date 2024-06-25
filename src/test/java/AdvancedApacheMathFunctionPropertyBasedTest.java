@@ -2,6 +2,7 @@ import com.pholser.junit.quickcheck.generator.Size;
 import net.jqwik.api.*;
 import net.jqwik.api.constraints.NotEmpty;
 import net.jqwik.api.statistics.Histogram;
+import net.jqwik.api.statistics.Statistics;
 import net.jqwik.api.statistics.StatisticsReport;
 import org.example.AdvancedApacheMathFunction;
 
@@ -22,6 +23,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
                         AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2),
                 "Le lunghezze degli array devono essere uguali"
         );
+        Statistics.collect(array1.length == array2.length);
     }
 
     @Property
@@ -41,6 +43,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
 
         double result = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array1, array2);
         assertTrue(result >= 0, "La media geometrica deve essere non negativa");
+        Statistics.collect(result>=0);
     }
 
 
@@ -59,6 +62,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
         double result2 = AdvancedApacheMathFunction.geometricMeanOfSumOfSquares(array2, array1);
 
         assertEquals(result1, result2, "La funzione deve essere simmetrica");
+        Statistics.collect(result1==result2);
     }
 
     @Property
@@ -96,6 +100,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
 
 
         assertEquals(result1, result2, "Aggiungere zero non deve cambiare il risultato");
+        Statistics.collect(result1==result2);
     }
 
     @Property
@@ -121,6 +126,7 @@ public class AdvancedApacheMathFunctionPropertyBasedTest {
         System.out.println("media con zeri: " + resultWithZeros);
 
         assertEquals(resultWithZeros, resultWithouthZeros, 1e-10, "L'aggiunta di zeri non deve cambiare il risultato");
+        Statistics.collect(resultWithZeros == resultWithouthZeros);
     }
 
 

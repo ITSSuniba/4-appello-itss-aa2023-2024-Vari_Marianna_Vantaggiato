@@ -15,6 +15,7 @@ public class DifferentLenghtTest {
         double result = geometricMeanOfSumOfSquaresVariableLength(array1, array2);
 
         assertTrue(Double.isNaN(result)); // Verifica se il risultato è NaN
+
     }
 
     @Test
