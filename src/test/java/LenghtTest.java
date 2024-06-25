@@ -74,9 +74,9 @@ public class LenghtTest {
         double[] array1 = {};
         double[] array2 = {};
 
-        double result = geometricMeanOfSumOfSquares(array1, array2);
-
-        assertTrue(Double.isNaN(result)); // Verifica se il risultato è NaN
+        assertThrows(IllegalArgumentException.class, ()-> {
+            geometricMeanOfSumOfSquares(array1, array2);
+        });
     }
 
     @Test
