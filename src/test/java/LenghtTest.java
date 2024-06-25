@@ -70,7 +70,7 @@ public class LenghtTest {
         assertEquals(expected, result, 0.0001); // Verifica che il risultato ottenuto sia vicino all'output atteso con una tolleranza di 0.0001
     }
     @Test
-    public void testGeometricMeanOfSumOfSquares_WithEmptyArrays_isNaN() {
+    public void testGeometricMeanOfSumOfSquares_WithEmptyArrays() {
         double[] array1 = {};
         double[] array2 = {};
 
